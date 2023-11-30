@@ -23,7 +23,7 @@ SRC_CFILES = so_long.c \
 # Source/linker files ---------------------------------------- #
 LIBFT_DIR =$(SRC_DIR)/libft
 PRINTF_DIR =$(SRC_DIR)/ft_printf
-MLX_DIR =$(SRC_DIR)/mlx
+MLX_DIR = mlx
 
 # Object files ----------------------------------------------- #
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -37,6 +37,7 @@ INCL_DIR = includes
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror  -g -fsanitize=address
 LINKFLAGS = -L./$(LIBFT_DIR) -lft -L./$(PRINTF_DIR) -lftprintf -L./$(MLX_DIR) -lmlx 
+FRAMEWORKS = -framework OpenGL -framework AppKit
 
 ########################## RULES ###############################
 
@@ -47,7 +48,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)  
 	@$(MAKE) -C $(PRINTF_DIR)
 	@$(MAKE) -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) $(LINKFLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) $(LINKFLAGS) $(FRAMEWORKS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)[+] $(NAME) compilado$(END)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
