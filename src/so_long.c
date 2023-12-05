@@ -1,5 +1,7 @@
-#include <mlx.h>
+/*#include <mlx.h>*/
 #include <stdio.h>
+#include "../inc/so_long.h"
+#include "../mlx/mlx.h"
 
 typedef struct	s_data {
 	void	*img;
@@ -13,10 +15,13 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
+	dst = NULL;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	//me da SEGFAULT
+	printf("color: %d\n", color);
+	printf("dst: %s\n", dst);
 	*(unsigned int*)dst = color;
-	printf("my_mlx_pixel_put 3\n");
+	printf("color: %d\n", color);
+	printf("dst: %s\n", dst);
 }
 
 int	main(void)
@@ -28,8 +33,9 @@ int	main(void)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(&img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	//mlx_pixel_put(mlx, mlx_win, 5, 5, 0x00ff0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
