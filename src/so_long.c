@@ -1,24 +1,5 @@
-/*#include <mlx.h>*/
-#include <stdio.h>
-#include <stdlib.h>
 #include "../inc/so_long.h"
 #include "../mlx/mlx.h"
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	int		key_pressed;
-	struct	timeval key_press_time;
-}	t_vars;
 
 int resize(int width, int height, t_vars *vars)
 {
@@ -33,35 +14,36 @@ int resize(int width, int height, t_vars *vars)
 
 int	close_window(t_vars *vars)
 {
+	printf("close window\n");
 	mlx_destroy_window(vars->mlx, vars->win);
-	exit(0);
+	exit(NO_ERROR);
 	return(0);
 }
 
-int close(int keycode, t_vars *vars)
+int key_hook(int keycode, t_vars *vars)
 {
+	printf("key hook - keycode: %d\n", keycode);
 	if(keycode == 53)
 		close_window(vars);
+	if(keycode == 0)
+		printf("A is pressed!\n");
 	return(0);
 }
 
-int	key_press(int keycode, t_vars *vars)
+int mouse_hook(int keycode, t_vars *vars)
 {
-	vars->key_pressed = keycode;
-	gettimeofday(&(vars->key_pressed), NULL);
+	(void) vars;
+	printf("mouse_hook - keycode: %d\n", keycode);
+	if(keycode == 2)
+		printf("Mouse button 2 pressed!\n");
 	return(0);
 }
 
-int	key_release(int keycode, t_vars *vars)
+int mouse_position(int x, int y, t_vars *vars)
 {
-	if(keycode == vars->key_pressed)
-	{
-		struct timeval current_time;
-		gettimeofdaay(&current_time, NULL);
-		double elaapsed_time = (current_time.tv_sec - vars->key_press_time.tv_sec) + (current_time.tv_usec - vars -> key_press_time.tv_usec) / 1000000.0;
-		if(elaapsed_time > 2.0)
-			printf("Key %d pressed for %.2f seconds\n", keycode, elaapsed_time);
-	}
+	(void) vars;
+	printf("mouse_position - x: %d, y: %d\n", x, y);
+	return(0);
 }
 
 int main(void)
@@ -71,9 +53,11 @@ int main(void)
 		vars.mlx = mlx_init();
 		vars.win = mlx_new_window(vars.mlx, 1920, 1080, "MY GAME!");
 		mlx_hook(vars.win, 2, 1L<<0, close, &vars); //key press event
-		mlx_hook(vars.win, 17, 1L<<17, resize, &vars); //Window resize event
-		mlx_hook(vars.win, 17, 1L<<17, close_window, &vars); //Window close event
-		mlx_loop_hook(vars.mlx, loop_hook, &vars); //Continuous loop hook
+		mlx_hook(vars.win, ON_DESTROY, 1L<<17, resize, &vars); //Window resize event
+		mlx_hook(vars.win, ON_DESTROY, 1L<<17, close_window, &vars); //Window close event
+		mlx_key_hook(vars.win, key_hook, &vars); //key press event
+		mlx_mouse_hook(vars.win, mouse_hook, &vars); //mouse click event
+		mlx_hook(vars.win, ON_MOUSEMOVE, 1L<<6, mouse_position, &vars); //mouse move event
 		mlx_loop(vars.mlx);
 }
 
