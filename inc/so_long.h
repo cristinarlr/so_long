@@ -67,6 +67,9 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
+	char	*relative_path;
+	int		width;
+	int		height;
 	int		key_pressed;
 	struct	timeval key_press_time;
 }	t_vars;
