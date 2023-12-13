@@ -63,7 +63,15 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-typedef struct s_vars
+typedef struct s_map
+{
+	char 	**map;
+	char 	**map_cpy;
+	int		map_raw_count;
+	int 	map_column_count;
+}t_map;
+
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
@@ -71,7 +79,10 @@ typedef struct s_vars
 	int		width;
 	int		height;
 	int		key_pressed;
-	struct	timeval key_press_time;
 }	t_vars;
+
+/* ----- FUNCTIONS ----- */
+
+int read_map(char **argv, t_map *map);
 
 #endif

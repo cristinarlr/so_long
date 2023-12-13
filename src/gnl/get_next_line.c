@@ -6,11 +6,12 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 23:25:20 by Cristina          #+#    #+#             */
-/*   Updated: 2023/04/28 11:14:24 by crramire         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:16:06 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../inc/get_next_line.h"
+#include "../../inc/so_long.h"
 
 static char	*ft_extract_line(char *stash)
 {
