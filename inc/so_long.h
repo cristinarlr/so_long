@@ -12,6 +12,7 @@
 # include <string.h>
 # include <limits.h>
 #include <sys/time.h>
+#include <errno.h>
 
 /* ---------------- PATH ---------------- */
 # include "../src/libft/libft.h"
@@ -67,7 +68,7 @@ typedef struct s_map
 {
 	char 	**map;
 	char 	**map_cpy;
-	int		map_raw_count;
+	int		map_row_count;
 	int 	map_column_count;
 }t_map;
 
@@ -84,5 +85,6 @@ typedef struct s_game
 /* ----- FUNCTIONS ----- */
 
 int read_map(char **argv, t_map *map);
+void parse_map (t_map *map);
 
 #endif
