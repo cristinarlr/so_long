@@ -29,13 +29,31 @@ void load_map(t_map *map, int fd)
     raw = map->map_row_count;
     while(raw > 0)
     {
-        map->map[i] = get_next_line(fd);
+        map->map[i] = ft_strtrim(get_next_line(fd), "\n");
         printf("map[%i] = %s", i, map->map[i]);
         i++;
         raw--;
     }
     map->map[i] = NULL;
+    printf("map[%i] = %s", i, map->map[i]);
 }
+
+/* char **copy_map(t_map *map, char **cpy)
+{
+    int i;
+
+    printf("\ndentro de copy_map\n");
+    i = 0;
+    map->map_cpy = malloc(sizeof(char **)*(map->map_row_count + 1));
+    while(i < (map->map_row_count))
+    {
+        map->map_cpy[i] = strdup(map->map[i]);
+        printf("map->map_cpy[%i] = %s", i, map->map_cpy[i]);
+        i++;
+    } 
+} */
+
+/*         ADAPTAR COPY MAP PARA USARLO DE FUNCIÓN CON EL FLOODFILL           */
 
 void copy_map(t_map *map)
 {
@@ -57,27 +75,25 @@ static void is_it_squared(t_map *map)
     int i;
     int len;
     int cmp_len;
-    char *trimmed;
 
     printf("\ndentro de is_it_squared\n");
     i = 0;
-    trimmed = ft_strtrim(map->map[i], "\n");
-    printf("trimmed: %s-test no nl", trimmed);
     if(map->map[i] != 0)
-        len = ft_strlen(ft_strtrim(map->map[i], "\n"));
+        len = ft_strlen(map->map[i]);
     while(map->map[i] != NULL)
     {
-        cmp_len = ft_strlen(ft_strtrim(map->map[i], "\n"));
+        cmp_len = ft_strlen(map->map[i]);
         //ver cómo manejo errores, si lo mando a una función si defino macros;
         if(len != cmp_len)
         {
-            printf("\n** ERROR len != cmp_len **\n");
+            printf("\n** ERROR NOT SQUARED len != cmp_len **\n");
             printf("map[%i] = %s\n", i, map->map[i]);
             exit(-1);
         }
         i++;
     }
     map->map_column_count = len;
+    printf("^^^^^^^^^^^^IT'S SQUARED!^^^^^^^^^^^^\n");
 }
 
 int read_map(char **argv, t_map *map)
@@ -89,13 +105,13 @@ int read_map(char **argv, t_map *map)
     fd = open(argv[1], O_RDONLY);
     //sacar el tamaño del array map_size
     raws = map_raws(argv, fd);
-    map = malloc(sizeof(t_map));
+    //map = malloc(sizeof(t_map));
     //inicializar el array con el tamaño
-    map->map = malloc(sizeof(char **)*(raws+1));
+    map->map = malloc(sizeof(char **)*(raws + 1));
     if(!map->map)
         return(-1);
     map->map_row_count = raws;
-    //almacenar el mapa
+    //almacenar el mapa (inc nl)
     load_map(map, fd);
     //revisar que es cuadrado
     is_it_squared(map);
