@@ -70,6 +70,12 @@ typedef struct s_map
 	char 	**map_cpy;
 	int		map_row_count;
 	int 	map_column_count;
+	int		player_col;
+	int		player_row;
+	int		player_steps;
+	int		path_exit_count;
+	int		path_collectable_count;
+	int		collectable_count;
 }t_map;
 
 typedef struct s_game
@@ -80,11 +86,23 @@ typedef struct s_game
 	int		width;
 	int		height;
 	int		key_pressed;
-}	t_vars;
+	void	*player_img;
+	void	*wall_img;
+	void	*floor_img;
+	void	*collectable_img;
+	void	*exit_on_img;
+	void	*exit_off_img;
+	t_map	map;
+
+}	t_game;
 
 /* ----- FUNCTIONS ----- */
 
 int read_map(char **argv, t_map *map);
 void parse_map (t_map *map);
+
+/* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
+void print_map (char **arr);
+void print_string(char *s);
 
 #endif

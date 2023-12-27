@@ -15,6 +15,9 @@ int main (int argc, char **argv)
         free(map);
     }
     else
+    {
+        ft_printf("Error: Expecting a valid input, verify exe argument\n");
         return(-1);
+    }
     return(0);
 }
