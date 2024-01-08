@@ -1,7 +1,7 @@
 #include "../inc/get_next_line.h"
 #include "../inc/so_long.h"
 
-static int map_raws(char **argv, int fd)
+static int map_rows(char **argv, int fd)
 {
     int i;
     char *line;
@@ -37,23 +37,6 @@ void load_map(t_map *map, int fd)
     map->map[i] = NULL;
     printf("map[%i] = %s\n\n", i, map->map[i]);
 }
-
-/*         ADAPTAR COPY MAP PARA USARLO DE FUNCIÓN CON EL FLOODFILL           */
-/* void copy_map_new(t_map *map, char **map_cpy)
-{
-    int i;
-
-    printf("\ndentro de copy_map_new\n");
-    i = 0;
-    map_cpy = malloc(sizeof(char **)*(map->map_row_count + 1));
-    while(i < (map->map_row_count))
-    {
-        map_cpy[i] = strdup(map->map[i]);
-        printf("map_cpy[%i] = %s", i, map_cpy[i]);
-        i++;
-    }
-} */
-
 
 void copy_map(t_map *map)
 {
@@ -106,23 +89,23 @@ int read_map(char **argv, t_map *map)
     fd = open(argv[1], O_RDONLY);
     if(fd < 0)
         return(ERROR);
-    //sacar el tamaño del array map_size
-    raws = map_raws(argv, fd);
-    //inicializar el array con el tamaño
+    //extract the number of rows to create map array
+    raws = map_rows(argv, fd);
+    //initialize map array
     map->map = malloc(sizeof(char **)*(raws + 1));
     if(!map->map)
         return(ERROR);
     map->map_row_count = raws;
-    //almacenar el mapa (inc nl)
+    //load map from .ber to array (inc nl)
     load_map(map, fd);
-    //revisar que es cuadrado);
     close(fd);
+    //verify that it's squared;
     is_it_squared(map);
-    //generar copia del mapa para flood_fill en parseo
+    //generate map copy for flood fill parsing
     copy_map(map);
     //copy_map_new(map, map->map_cpy);
     //print_map(map->map_cpy);
-    //parsear para chequeo de errores
+    //parsing map values
     parse_map(map);
     return(0);
 }

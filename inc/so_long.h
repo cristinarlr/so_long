@@ -76,6 +76,8 @@ typedef struct s_map
 	int		path_exit_count;
 	int		path_collectable_count;
 	int		collectable_count;
+	void	*mlx;
+	void	*win;
 }t_map;
 
 typedef struct s_game
@@ -83,8 +85,8 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	*relative_path;
-	int		width;
-	int		height;
+	//int		width;
+	//int		height;
 	int		key_pressed;
 	void	*player_img;
 	void	*wall_img;
