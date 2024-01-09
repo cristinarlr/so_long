@@ -20,6 +20,10 @@
 # include "../mlx/mlx.h"
 /*# include "../src/Gnl/include/get_next_line.h"*/
 
+/* ----- RESOLUTIONS ----- */
+# define RESOLUTION_H	128
+# define RESOLUTION_W	128
+
 /* ----- CONSTANTS ----- */
 enum e_exit_code{
 	ERROR = -1,
@@ -101,7 +105,7 @@ typedef struct s_game
 
 int read_map(char **argv, t_map *map);
 void parse_map (t_map *map);
-void print_graphics_in_win(t_map *map);
+void print_graphics_in_win(t_game game);
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
 void print_map (char **arr);

@@ -57,7 +57,8 @@ int main (int argc, char **argv)
     ft_printf("1\n");
     game.win = mlx_new_window(game.mlx, game.map.map_column_count * 50, game.map.map_row_count * 50, "So_Long!");
     ft_printf("2\n");
-    print_graphics_in_win(&game.map);
+    print_graphics_in_win(game);
+    ft_printf("3\n");
     mlx_key_hook(game.win, key_hook, &game);
     mlx_hook(game.win, ON_DESTROY, 1L<<17, close_red_cross_window, &game);
     mlx_loop(game.mlx);
