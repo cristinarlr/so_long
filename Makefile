@@ -22,6 +22,7 @@ SRC_CFILES =	main.c \
 				read_map.c \
 				parse_map.c \
 				utils.c \
+				graphic_functions.c \
 
 SRC_GNL_DIR = $(SRC_DIR)/gnl
 SRC_GNL_FILES = $(addprefix $(SRC_GNL_DIR)/, $(SRC_GNL_CFILES))

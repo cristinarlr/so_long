@@ -76,8 +76,14 @@ typedef struct s_map
 	int		path_exit_count;
 	int		path_collectable_count;
 	int		collectable_count;
-	void	*mlx;
-	void	*win;
+	//void	*mlx;
+	//void	*win;
+	void	*player_img;
+	void	*wall_img;
+	void	*floor_img;
+	void	*collectable_img;
+	void	*exit_on_img;
+	void	*exit_off_img;
 }t_map;
 
 typedef struct s_game
@@ -88,20 +94,14 @@ typedef struct s_game
 	//int		width;
 	//int		height;
 	int		key_pressed;
-	void	*player_img;
-	void	*wall_img;
-	void	*floor_img;
-	void	*collectable_img;
-	void	*exit_on_img;
-	void	*exit_off_img;
 	t_map	map;
-
 }	t_game;
 
 /* ----- FUNCTIONS ----- */
 
 int read_map(char **argv, t_map *map);
 void parse_map (t_map *map);
+void print_graphics_in_win(t_map *map);
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
 void print_map (char **arr);
