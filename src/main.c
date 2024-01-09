@@ -55,7 +55,7 @@ int main (int argc, char **argv)
     ft_printf("GAME STARTS ... \n");
     game.mlx = mlx_init();
     ft_printf("1\n");
-    game.win = mlx_new_window(game.mlx, game.map.map_column_count * 50, game.map.map_row_count * 50, "So_Long!");
+    game.win = mlx_new_window(game.mlx, game.map.map_column_count * RESOLUTION_W, game.map.map_row_count * RESOLUTION_H, "So_Long!");
     ft_printf("2\n");
     print_graphics_in_win(game);
     ft_printf("3\n");

@@ -21,8 +21,8 @@
 /*# include "../src/Gnl/include/get_next_line.h"*/
 
 /* ----- RESOLUTIONS ----- */
-# define RESOLUTION_H	128
-# define RESOLUTION_W	128
+# define RESOLUTION_H	32
+# define RESOLUTION_W	32
 
 /* ----- CONSTANTS ----- */
 enum e_exit_code{
