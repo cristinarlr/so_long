@@ -8,7 +8,10 @@ void load_xpm_to_data_structure(t_game *game)
     
     ft_printf("load_xpm_to_data_structure\n");
     game->map.collectable_img = mlx_xpm_file_to_image(game->mlx, "./xpm/beet_on_floor.xpm", &width, &height);
-    game->map.player_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_front.xpm", &width, &height);
+    game->map.player_front_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_front.xpm", &width, &height);
+    game->map.player_back_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_back.xpm", &width, &height);
+    game->map.player_left_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_left.xpm", &width, &height);
+    game->map.player_right_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_right.xpm", &width, &height);
     game->map.wall_img= mlx_xpm_file_to_image(game->mlx, "./xpm/wall.xpm", &width, &height);
     game->map.floor_img= mlx_xpm_file_to_image(game->mlx, "./xpm/floor.xpm", &width, &height);
     game->map.exit_on_img= mlx_xpm_file_to_image(game->mlx, "./xpm/exit_on.xpm", &width, &height);
@@ -22,7 +25,7 @@ void select_square_grid_image(t_game *game, int row, int col)
     else if(game->map.map[row][col] == '0')
         mlx_put_image_to_window(game->mlx, game->win, game->map.floor_img, col * RESOLUTION_W, row * RESOLUTION_H);
     else if(game->map.map[row][col] == 'P')
-        mlx_put_image_to_window(game->mlx, game->win, game->map.player_img, col * RESOLUTION_W, row * RESOLUTION_H);
+        mlx_put_image_to_window(game->mlx, game->win, game->map.player_front_img, col * RESOLUTION_W, row * RESOLUTION_H);
     else if(game->map.map[row][col] == 'E')
         mlx_put_image_to_window(game->mlx, game->win, game->map.exit_on_img, col * RESOLUTION_W, row * RESOLUTION_H);
     else if(game->map.map[row][col] == 'C')

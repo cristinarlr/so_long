@@ -48,10 +48,11 @@ enum keycodes
     M_CLICK = 3,
     SCROLL_UP = 4,
     SCROLL_DOWN = 5,
-    A_KEY = 0,
-	S_KEY,
-	D_KEY,
-	W_KEY = 13,
+    A_LEFT = 0,
+	S_DOWN,
+	D_RIGHT,
+	W_UP = 13,
+	Q_QUIT = 12,
 	ESC = 53,
 	LEFT = 123,
 	RIGHT,
@@ -82,7 +83,10 @@ typedef struct s_map
 	int		collectable_count;
 	//void	*mlx;
 	//void	*win;
-	void	*player_img;
+	void	*player_front_img;
+	void	*player_back_img;
+	void	*player_left_img;
+	void	*player_right_img;
 	void	*wall_img;
 	void	*floor_img;
 	void	*collectable_img;
@@ -106,6 +110,9 @@ typedef struct s_game
 int read_map(char **argv, t_map *map);
 void parse_map (t_map *map);
 void print_graphics_in_win(t_game game);
+int key_hook_control(int keycode, t_game *game);
+int	close_red_cross_window(t_game *game);
+
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
 void print_map (char **arr);
