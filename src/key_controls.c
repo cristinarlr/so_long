@@ -10,15 +10,18 @@ int	close_red_cross_window(t_game *game)
 
 static int valid_movement(int row, int col, t_game *game)
 {
+    printf("dentro de valid_movement\n");
     if(game->map.map[row][col] == '0')
     {
-        game->map.map[row][col] = 'P';
+        printf("dentro de valid_movement = '0'\n");
+        game->map.map[row][col] = 'p';
         game->map.player_row = row;
         game->map.player_col = col;
         game->map.player_steps++;
     }
     if(game->map.map[row][col] == 'C')
     {
+        printf("dentro de valid_movement = 'C'\n");
         game->map.map[row][col] = 'P';
         game->map.player_row = row;
         game->map.player_col = col;
@@ -27,6 +30,7 @@ static int valid_movement(int row, int col, t_game *game)
     }
     if(game->map.map[row][col] == 'E')
     {
+        printf("dentro de valid_movement = 'E'\n");
         if(game->map.collectable_count != 0)
             return(NO_ERROR);
         game->map.player_steps++;
@@ -44,6 +48,7 @@ static int do_move(int keycode, t_game *game)
 
     scroll_row = 0;
     scroll_col = 0;
+    printf("dentro de do_move\n");
     if(keycode == LEFT || keycode == A_LEFT )
         scroll_col = -1;
     if(keycode == RIGHT || keycode == D_RIGHT)
@@ -64,6 +69,7 @@ int key_hook_control(int keycode, t_game *game)
 {
     int feasible_move;
 
+    printf("dentro de key_hook_control\n");
     feasible_move = 0;
     printf("key hook - keycode: %d\n", keycode);
 	if(keycode == ESC || keycode == Q_QUIT)

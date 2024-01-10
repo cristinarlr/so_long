@@ -43,7 +43,7 @@ int main (int argc, char **argv)
     print_graphics_in_win(game);
     ft_printf("3\n");
     mlx_key_hook(game.win, key_hook_control, &game);
-    mlx_hook(game.win, ON_DESTROY, 1L<<17, close_red_cross_window, &game);
+    //mlx_hook(game.win, ON_DESTROY, 1L<<17, close_red_cross_window, &game);
     mlx_loop(game.mlx);
     //free(map);
     return(0);
