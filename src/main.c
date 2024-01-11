@@ -12,7 +12,7 @@ int check_valid_map_format(char *argv)
     if(argv[len - 4] == '.' && argv[len -3] == 'b' && argv[len -2] == 'e' && argv[len - 1] == 'r')
         return(NO_ERROR);
     else
-        return(ERROR);
+        exit(1);
 }
 
 int main (int argc, char **argv)
