@@ -35,7 +35,7 @@ static int check_values(t_map *map)
             else if (map->map[i][0] != '1' || map->map[i][len - 1] != '1')
             {
                     printf("check_values - Error 1st o last position middle rows has to be 1\n");
-                    printf("s = %s, c = %c\n", map->map[i], map->map[i][j]);
+                    //printf("s = %s, c = %c\n", map->map[i], map->map[i][j]);
                     return(ERROR);
             } 
             //valores intermedios corresponden a "01PEC"
@@ -80,7 +80,7 @@ static int min_pec_char(t_map *map)
             {
                 map->player_row = i;
                 map->player_col = j;
-                printf("map->player_row = %i; map->player_col = %i\n", map->player_row, map->player_col);
+                //printf("map->player_row = %i; map->player_col = %i\n", map->player_row, map->player_col);
                 flag_p = 1;
             }
             if (map->map[i][j] == 'E')
@@ -88,7 +88,7 @@ static int min_pec_char(t_map *map)
             if (map->map[i][j] == 'C')
             {
                 map->collectable_count++;
-                printf("map->collectable_count = %i\n", map->collectable_count);
+                //printf("map->collectable_count = %i\n", map->collectable_count);
                 flag_c = 1;
             }
             j++;
@@ -131,7 +131,7 @@ static int  check_valid_path(t_map *map)
     map->path_exit_count = 0;
     map->path_collectable_count = 0;
     check_flood_fill_path(map, map->player_row, map->player_col);
-    printf("map->collectable_count = %i; map->path_collectable_count = %i; map->path_exit_count = %i\n", map->collectable_count, map->path_collectable_count, map->path_exit_count);
+    //printf("map->collectable_count = %i; map->path_collectable_count = %i; map->path_exit_count = %i\n", map->collectable_count, map->path_collectable_count, map->path_exit_count);
     if(map->collectable_count == map->path_collectable_count && map->path_exit_count)
         return(NO_ERROR);
     else

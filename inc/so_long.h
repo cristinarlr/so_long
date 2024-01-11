@@ -98,7 +98,7 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	char	*relative_path;
+	//char	*relative_path;
 	//int		width;
 	//int		height;
 	int		key_pressed;
@@ -115,7 +115,7 @@ int	close_red_cross_window(t_game *game);
 
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
-void print_map (char **arr);
+void print_map (t_game *game);
 void print_string(char *s);
 
 #endif

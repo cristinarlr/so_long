@@ -6,7 +6,7 @@ void load_xpm_to_data_structure(t_game *game)
     int width;
     int height;
     
-    ft_printf("load_xpm_to_data_structure\n");
+    ft_printf("dentro de load_xpm_to_data_structure\n");
     game->map.collectable_img = mlx_xpm_file_to_image(game->mlx, "./xpm/beet_on_floor.xpm", &width, &height);
     game->map.player_front_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_front.xpm", &width, &height);
     game->map.player_back_img= mlx_xpm_file_to_image(game->mlx, "./xpm/elf_back.xpm", &width, &height);
@@ -38,6 +38,7 @@ void print_xpm_on_map(t_game *game)
     int col;
 
     row = 0;
+    ft_printf("dentro de print_xpm_on_map\n");
     while (row < game->map.map_row_count)
     {
         col = 0;

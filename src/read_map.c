@@ -12,9 +12,9 @@ static int map_rows(char **argv, int fd)
     while((line = get_next_line(fd)) != 0)
     {
         i++;
-        printf("line = %s", line);
+//        printf("line = %s", line);
     }
-    printf("\nmap_rows = %i\n\n", i);
+//    printf("\nmap_rows = %i\n\n", i);
     return(i);
 }
 
@@ -24,13 +24,13 @@ void load_map(t_map *map, int fd)
     int raw;
 
     printf("dentro de load_map\n");
-    printf("map->map_row_count = %i\n", map->map_row_count);
+//    printf("map->map_row_count = %i\n", map->map_row_count);
     i = 0;
     raw = map->map_row_count;
     while(raw > 0)
     {
         map->map[i] = ft_strtrim(get_next_line(fd), "\n");
-        printf("map[%i] = %s", i, map->map[i]);
+//        printf("map[%i] = %s", i, map->map[i]);
         i++;
         raw--;
     }
@@ -48,7 +48,7 @@ void copy_map(t_map *map)
     while(i < (map->map_row_count))
     {
         map->map_cpy[i] = strdup(map->map[i]);
-        printf("map->map_cpy[%i] = %s", i, map->map_cpy[i]);
+//        printf("map->map_cpy[%i] = %s", i, map->map_cpy[i]);
         i++;
     }
     printf("\n^^^^^^^^^^^^COPIED MAP!^^^^^^^^^^^^\n");
@@ -96,6 +96,7 @@ int read_map(char **argv, t_map *map)
     if(!map->map)
         return(ERROR);
     map->map_row_count = raws;
+   // ft_printf("READ MAP: map->map_row_count = %i\n", map->map_row_count);
     //load map from .ber to array (inc nl)
     load_map(map, fd);
     close(fd);
