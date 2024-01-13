@@ -24,12 +24,12 @@ SRC_CFILES =	main.c \
 				utils.c \
 				graphic_functions.c \
 				key_controls.c \
+				error_management.c \
 
 SRC_GNL_DIR = $(SRC_DIR)/gnl
 SRC_GNL_FILES = $(addprefix $(SRC_GNL_DIR)/, $(SRC_GNL_CFILES))
 SRC_GNL_CFILES = 	get_next_line.c \
 					get_next_line_utils.c \
-
 
 # Source/linker files ---------------------------------------- #
 LIBFT_DIR =$(SRC_DIR)/libft

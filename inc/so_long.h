@@ -75,6 +75,9 @@ typedef struct s_map
 	char 	**map_cpy;
 	int		map_row_count;
 	int 	map_column_count;
+	int		flag_p;
+    int		flag_e;
+    int		flag_c;
 	int		player_col;
 	int		player_row;
 	int		player_steps;
@@ -107,15 +110,18 @@ typedef struct s_game
 
 /* ----- FUNCTIONS ----- */
 
-int read_map(char **argv, t_map *map);
-void parse_map (t_map *map);
+int read_map(char **argv, t_map *, t_game *game);
+void parse_map (t_map *map, t_game *game);
 void print_graphics_in_win(t_game game);
 int key_hook_control(int keycode, t_game *game);
 int	close_red_cross_window(t_game *game);
+int print_error_do_exit(char *error_message, t_game *game, int free_needed);
+void free_map(char **map);
 
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
 void print_map (t_game *game);
+void print_map_cpy(t_game *game);
 void print_string(char *s);
 
 #endif

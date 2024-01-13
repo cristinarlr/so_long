@@ -24,15 +24,39 @@ void print_map(t_game *game)
     int j = 0;
     int count = 1;
 
-ft_printf("Dentro de print_map:\n");
-ft_printf("game->map.map_row_count = %i\n", game->map.map_row_count);
-ft_printf("game->map.map_column_count = %i\n", game->map.map_column_count);
+//ft_printf("Dentro de print_map:\n");
+//ft_printf("game->map.map_row_count = %i\n", game->map.map_row_count);
+//ft_printf("game->map.map_column_count = %i\n", game->map.map_column_count);
 while(i < game->map.map_row_count)
     {
         while(j < game->map.map_column_count)
         {
             //printf("arr[%i][%i] = %c; count: %i\n", i, j, game->map.map[i][j], count);
             printf("%c", game->map.map[i][j]);
+            j++;
+        }
+        printf("\n");
+        j = 0;
+        i++;
+        count++;
+    }
+}
+
+void print_map_cpy(t_game *game)
+{
+    int i = 0;
+    int j = 0;
+    int count = 1;
+
+//ft_printf("Dentro de print_map_cpy:\n");
+//ft_printf("game->map.map_row_count = %i\n", game->map.map_row_count);
+//ft_printf("game->map.map_column_count = %i\n", game->map.map_column_count);
+while(i < game->map.map_row_count)
+    {
+        while(j < game->map.map_column_count)
+        {
+            //printf("arr[%i][%i] = %c; count: %i\n", i, j, game->map.map[i][j], count);
+            printf("%c", game->map.map_cpy[i][j]);
             j++;
         }
         printf("\n");

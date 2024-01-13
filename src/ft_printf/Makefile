@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crramire <crramire@student.42.fr>          +#+  +:+       +#+         #
+#    By: Cristina <Cristina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 14:26:02 by crramire          #+#    #+#              #
-#    Updated: 2023/11/29 12:23:12 by crramire         ###   ########.fr        #
+#    Updated: 2024/01/12 11:02:29 by Cristina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,15 @@ RM = rm -f
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = ftprintf.a
-SRCS = 	ft_printf.c ft_printf_ut_strchr.c ft_printf_ut_num.c ft_printf_ut_ptr.c
+NAME = libftprintf.a
+SRCS = 	ft_printf.c \
+		ft_printf_ut_strchr.c \
+		ft_printf_ut_num.c \
+		ft_printf_ut_ptr.c \
 
-OBJS = $(SRCS:%.c=%.o)
+OBJ_DIR = obj
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
@@ -38,11 +43,13 @@ $(NAME): $(OBJS)
 	@$(LIB) $(NAME) $(OBJS)
 	@echo "$(GREEN)[+] $(BLUE)  $(NAME) compilada! $(END)"
 	
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $(<) -o $(@)
 
 clean:
 	@$(RM) $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@echo "$(MAGENTA)[+] $(BLUE)  Archivos objeto .o $(NAME) borrados $(END)"
 
 fclean: clean
