@@ -87,6 +87,7 @@ static int min_pec_char(t_map *map)
 
 void    check_flood_fill_path(t_map *map, int row, int col)
 {
+    //printf("BEFORE adress map->map_cpy = %p\nmap->map_cpy[%i][%i] = %c", map->map_cpy, row, col, map->map_cpy[row][col]);
     if(map->map_cpy[row][col] == 'E')
         map->path_exit_count++;
     if(map->map_cpy[row][col] == 'C')
@@ -122,7 +123,9 @@ void parse_map (t_map *map, t_game *game)
 
     i = 0;
     if (check_values(map) == ERROR)
+    {
         print_error_do_exit(": Invalid map values.\n   >> Only 1, 0, P, E and C are allowed\n   >> Map frame has to be built with 1 values", game, 2);
+    }
     if (min_pec_char(map) == ERROR)
         print_error_do_exit(": Invalid map values. Only one player (P) and one exit (E) allowed", game, 2);
     if (check_valid_path(map) == ERROR)

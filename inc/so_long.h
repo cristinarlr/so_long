@@ -84,8 +84,6 @@ typedef struct s_map
 	int		path_exit_count;
 	int		path_collectable_count;
 	int		collectable_count;
-	//void	*mlx;
-	//void	*win;
 	void	*player_front_img;
 	void	*player_back_img;
 	void	*player_left_img;
@@ -117,6 +115,8 @@ int key_hook_control(int keycode, t_game *game);
 int	close_red_cross_window(t_game *game);
 int print_error_do_exit(char *error_message, t_game *game, int free_needed);
 void free_map(char **map);
+void init_ds_map(t_map *map);
+void print_ds_map(t_map *map);
 
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */

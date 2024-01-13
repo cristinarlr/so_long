@@ -73,6 +73,7 @@ int read_map(char **argv, t_map *map, t_game *game)
     int fd;
     int raws;
    
+    init_ds_map(map);
     fd = open(argv[1], O_RDONLY);
     if(fd < 0)
         return(print_error_do_exit(": Problem reading file", game, 0));
@@ -85,15 +86,7 @@ int read_map(char **argv, t_map *map, t_game *game)
     close(fd);
     is_it_squared(map, game);
     copy_map(map, game);
-    ft_printf("​🎈​​MAP. MAP🎈​​\n");
-    print_map(game);
-    ft_printf("​🎈​​MAP. MAP.MAP_CPY🎈​​\n");
-    print_map_cpy(game);
     parse_map(map, game);
-    ft_printf("2 ​🎈​​MAP. MAP🎈​​\n");
-    print_map(game);
-    ft_printf("2 ​🎈​​MAP. MAP.MAP_CPY🎈​​\n");
-    print_map_cpy(game);
     return(0);
 }
  

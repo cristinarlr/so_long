@@ -10,15 +10,18 @@ void free_map(char **map)
     while (map[i])
     {
         free(map[i]);
+        //map[i] = NULL;
         i++;
     }
     free(map);
-    exit(0);
 }
 
 int print_error_do_exit(char *error_message, t_game *game, int free_needed)
 {
     ft_printf("🚫​ Error%s\n", error_message);
+    ft_printf("​🔥🔥🔥🔥🔥🔥​​\n");
+    ft_printf("​POINTER MAP.CPY = %p​​\n", game->map.map_cpy);
+    ft_printf("​POINTER MAP = %p​​\n", game->map.map);
     if(free_needed == 1)
     {
         printf("free_map = case 1\n");
@@ -33,3 +36,9 @@ int print_error_do_exit(char *error_message, t_game *game, int free_needed)
     }
     exit(0);
 }
+
+
+/*     ft_printf("​🎈​​MAP. MAP🎈​​\n");
+    print_map(game);
+    ft_printf("​🎈​​MAP. MAP.MAP_CPY🎈​​\n");
+    print_map_cpy(game); */

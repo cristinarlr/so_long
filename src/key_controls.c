@@ -39,7 +39,7 @@ static int valid_movement(int new_row, int new_col, t_game *game)
             return(1);
         game->map.player_steps++;
         //hacer función de exit_game
-        ft_printf("EVERYTHING COLLECTED!\n");
+        ft_printf("​\n 🙌​  🥦​🍆​🥕​🌽​🥬​🌶️  🙌​​\nEVERYTHING COLLECTED!\n 🙌​  🥦​🍆​🥕​🌽​🥬​🌶️  🙌​ \n\n");
         exit(0);
     }
     if(game->map.map[new_row][new_col] == '1')

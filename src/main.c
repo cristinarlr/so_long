@@ -15,6 +15,12 @@ int check_valid_map_format(char *argv, t_game *game)
         return(print_error_do_exit(": Invalid map format, only .ber are allowed", game, 0));
 }
 
+void leaks(void)
+ {
+     system("leaks -q so_long");
+ }
+
+
 int main (int argc, char **argv)
 {
     int i;
@@ -35,6 +41,8 @@ int main (int argc, char **argv)
     mlx_key_hook(game.win, key_hook_control, &game);
     mlx_hook(game.win, ON_DESTROY, 1L<<17, close_red_cross_window, &game);
     mlx_loop(game.mlx);
-    //free_map(game.map.map);
+    free_map(game.map.map);
+    //system("leaks so_long");
+    atexit(leaks);
     return(0);
 }
