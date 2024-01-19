@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:21:36 by Cristina          #+#    #+#             */
-/*   Updated: 2023/03/22 15:20:33 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:39:58 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start > s_len)
 		return (ft_strdup(""));
 	if (len > (s_len - start))
-			len = s_len - start;
+		len = s_len - start;
 	subs = malloc(sizeof(char) * (len + 1));
 	if (subs == 0)
 		return (0);

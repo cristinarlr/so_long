@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Cristina <Cristina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 09:44:51 by crramire          #+#    #+#             */
-/*   Updated: 2023/04/17 09:54:38 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:39:32 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize)
 		return (size_src);
 	while (src[i] != '\0' && i < (dstsize - 1))
 	{
-			dst[i] = src[i];
-			i++;
+		dst[i] = src[i];
+		i++;
 	}
 	dst[i] = '\0';
 	return (size_src);
@@ -32,7 +32,7 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize)
 
 /*
 int	main()
-{	
+{
 	char source[] = ".mundo!";
 	char destination[] = "hola";
 

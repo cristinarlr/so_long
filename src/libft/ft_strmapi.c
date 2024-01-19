@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Cristina <Cristina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:05:43 by Cristina          #+#    #+#             */
-/*   Updated: 2023/04/11 08:46:06 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:39:40 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (0);
 	while (s[i] != '\0')
 	{
-	s2[i] = (*f)(i, s[i]);
-	i++;
+		s2[i] = (*f)(i, s[i]);
+		i++;
 	}
 	return (s2);
 }

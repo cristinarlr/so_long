@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Cristina <Cristina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:35:34 by crramire          #+#    #+#             */
-/*   Updated: 2023/04/01 18:17:36 by Cristina         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:39:02 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_countwords(char const *s, char c)
 	i = 0;
 	count = 0;
 	while (s[i])
-	{	
+	{
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 		{
 			count++;
