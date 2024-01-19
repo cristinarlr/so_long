@@ -17,7 +17,7 @@ static int check_values(t_map *map)
         j = 0;
         while (j < map->map_column_count)
         {
-            if (j == 0 || j == map->map_column_count)
+            if (i == 0 || i == map->map_column_count)
             {
                 if (map->map[i][j] != '1')
                 {
@@ -36,6 +36,7 @@ static int check_values(t_map *map)
         }
         i++;
     }
+    ft_printf("Fuera de check_values\n");
     return(NO_ERROR);
 }
 
@@ -124,11 +125,11 @@ void parse_map (t_map *map, t_game *game)
     i = 0;
     if (check_values(map) == ERROR)
     {
-        print_error_do_exit(": Invalid map values.\n   >> Only 1, 0, P, E and C are allowed\n   >> Map frame has to be built with 1 values", game, 2);
+        print_error_do_exit(": Invalid map values.\n   >> Only 1, 0, P, E and C are allowed.\n   >> Map frame has to be built with 1 values.\n", game, 2);
     }
     if (min_pec_char(map) == ERROR)
-        print_error_do_exit(": Invalid map values. Only one player (P) and one exit (E) allowed", game, 2);
+        print_error_do_exit(": Invalid map values. Only one player (P), one exit (E) allowed and at least one collectable (C).\n", game, 2);
     if (check_valid_path(map) == ERROR)
-        print_error_do_exit(": Invalid path. Impossible to collect everything or access to exit", game, 2);
+        print_error_do_exit(": Invalid path. Impossible to collect everything or access to exit.\n", game, 2);
     i++;
 }

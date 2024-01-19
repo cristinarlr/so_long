@@ -1,16 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Cristina <Cristina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/17 16:06:01 by Cristina          #+#    #+#             */
+/*   Updated: 2024/01/17 16:15:09 by Cristina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/so_long.h"
 #include "../inc/get_next_line.h"
-
-//time to *focus = 10:34 011123 15:30
-//time to *focus = 10:10 011223
 
 int check_valid_map_format(char *argv, t_game *game)
 {
     int len;
-
-    len = ft_strlen(argv);
-    if(argv[len - 4] == '.' && argv[len -3] == 'b' && argv[len -2] == 'e' && argv[len - 1] == 'r')
-        return(NO_ERROR);
+    
+	len = ft_strlen(argv);
+	if(argv[len - 4] == '.' && argv[len -3] == 'b' && argv[len -2] == 'e' && argv[len - 1] == 'r')
+		return(NO_ERROR);
     else
         return(print_error_do_exit(": Invalid map format, only .ber are allowed", game, 0));
 }
