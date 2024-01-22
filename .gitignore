@@ -1,1 +1,4 @@
 .DStore
+*.o
+*.a
+so_long

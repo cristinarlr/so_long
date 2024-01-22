@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:16:33 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/19 13:12:04 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:21:47 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,24 @@ int	close_red_cross_window(t_game *game)
 	exit(NO_ERROR);
 }
 
+static void add_mvmnt(int new_row, int new_col, t_game *game)
+{
+	game->map.player_row = new_row;
+	game->map.player_col = new_col;
+	game->map.player_steps++;
+}
+
 static int	valid_mvmnt(int new_row, int new_col, t_game *game)
 {
 	if (game->map.map[new_row][new_col] == '0')
 	{
 		game->map.map[new_row][new_col] = 'P';
-		game->map.player_row = new_row;
-		game->map.player_col = new_col;
-		game->map.player_steps++;
+		add_mvmnt(new_row, new_col, game);
 	}
 	if (game->map.map[new_row][new_col] == 'C')
 	{
 		game->map.map[new_row][new_col] = 'P';
-		game->map.player_row = new_row;
-		game->map.player_col = new_col;
-		game->map.player_steps++;
+		add_mvmnt(new_row, new_col, game);
 		game->map.collectable_count--;
 	}
 	if (game->map.map[new_row][new_col] == 'E')
@@ -41,6 +44,7 @@ static int	valid_mvmnt(int new_row, int new_col, t_game *game)
 		if (game->map.collectable_count != 0)
 			return (1);
 		game->map.player_steps++;
+		ft_printf("%s", SUCCESSMSG);
 		exit(0);
 	}
 	if (game->map.map[new_row][new_col] == '1')
@@ -74,6 +78,7 @@ static int	do_move(int keycode, t_game *game)
 			scroll_col + current_col, game) == ERROR)
 		return (ERROR);
 	game->map.map[current_row][current_col] = '0';
+	ft_printf("steps: %i\n", game->map.player_steps);
 	return (NO_ERROR);
 }
 

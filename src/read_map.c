@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:36:21 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/19 11:03:17 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:54:13 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	copy_map(t_map *map, t_game *game)
 		map->map_cpy[i] = ft_strdup(map->map[i]);
 		i++;
 	}
+	map->map_cpy[i] = NULL;
 }
 
 int	read_map(char **argv, t_map *map, t_game *game)
@@ -97,6 +98,8 @@ int	read_map(char **argv, t_map *map, t_game *game)
 	load_map(map, fd);
 	close(fd);
 	is_it_squared(map, game);
+	if (map->map_column_count > 75 || map->map_row_count > 40)
+		return (print_error_do_exit(ERRORMSG_5_1, game, 1));
 	copy_map(map, game);
 	parse_map(map, game);
 	return (0);

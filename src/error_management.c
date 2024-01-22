@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:58:38 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/19 13:03:55 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:55:04 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,8 @@ int	print_error_do_exit(char *error_message, t_game *game, int free_needed)
 	if (free_needed == 2)
 	{
 		ft_printf("🔥free_map = case 2🔥\n");
+		free_map(game->map.map_cpy);
 		free_map(game->map.map);
 	}
 	exit(0);
 }
-
-/*CONSULTAR LO DE ESTE SEGUNDO FREE*/
-/* if (free_needed == 2)
-	{
-		printf("🔥​free_map = case 2🔥​\n");
-		//free_map(game->map.map_cpy);
-		//Me da problemas de acceso a memoria
-		//cuando quiero entrar en (game->map.map_cpy)
-		free_map(game->map.map);
-	} */

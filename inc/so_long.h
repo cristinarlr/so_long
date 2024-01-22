@@ -11,8 +11,8 @@
 # include <stdio.h>
 # include <string.h>
 # include <limits.h>
-#include <sys/time.h>
-#include <errno.h>
+# include <sys/time.h>
+# include <errno.h>
 
 /* ---------------- PATH ---------------- */
 # include "../src/libft/libft.h"
@@ -24,16 +24,45 @@
 # define RESOLUTION_H	32
 # define RESOLUTION_W	32
 
+/* ----- XPM PATH ----- */
+# define XPM_1 "./xpm/beet_on_floor.xpm"
+# define XPM_2 "./xpm/elf_front.xpm"
+# define XPM_3 "./xpm/elf_back.xpm"
+# define XPM_4 "./xpm/elf_left.xpm"
+# define XPM_5 "./xpm/elf_right.xpm"
+# define XPM_6 "./xpm/wall.xpm"
+# define XPM_7 "./xpm/floor.xpm"
+# define XPM_8 "./xpm/exit_on.xpm"
+# define XPM_9 "./xpm/exit_off.xpm"
+
+/* ----- MESSAGES ----- */
+# define ERRORMSG_1	": Invalid map format, only .ber are allowed"
+# define ERRORMSG_2 ": Expecting a valid input, verify exe arguments"
+# define ERRORMSG_3 ": Problem reading file"
+# define ERRORMSG_4 ": Memory allocation problem"
+# define ERRORMSG_5 ": Map is not squared"
+# define ERRORMSG_5_1 ": Map size not valid. Please try smaller map"
+# define ERRORMSG_6 ": Memory allocation problem"
+# define ERRORMSG_7 ": Invalid map values.\n\
+\t>> Only 1, 0, P, E and C are allowed.\n\
+\t>> Map frame has to be built with 1 values.\n"
+# define ERRORMSG_8 ": Invalid map values.\n\
+\t>> Only one player (P), one exit (E) allowed\n\
+\t>> At least one collectable (C).\n"
+# define ERRORMSG_9 ": Invalid path.\n\
+\t>> Impossible to collect everything or access to exit.\n"
+# define SUCCESSMSG "​🥦​🍆​🥕​🌽​🥬​🌶️​EVERYTHING COLLECTED!🥦​🍆​🥕​🌽​🥬​🌶️\n"
+
 /* ----- CONSTANTS ----- */
 enum e_exit_code{
 	ERROR = -1,
-	NO_ERROR = 0	
+	NO_ERROR = 0
 };
 
-enum events
+enum e_events
 {
-    ON_KEYPRESS = 2,
-    ON_KEYRELEASE = 3,
+	ON_KEYPRESS = 2,
+	ON_KEYRELEASE = 3,
 	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
@@ -41,14 +70,14 @@ enum events
 	ON_DESTROY = 17
 };
 
-enum keycodes
+enum e_keycodes
 {
-    L_CLICK = 1,
-    R_CLICK = 2,
-    M_CLICK = 3,
-    SCROLL_UP = 4,
-    SCROLL_DOWN = 5,
-    A_LEFT = 0,
+	L_CLICK = 1,
+	R_CLICK = 2,
+	M_CLICK = 3,
+	SCROLL_UP = 4,
+	SCROLL_DOWN = 5,
+	A_LEFT = 0,
 	S_DOWN,
 	D_RIGHT,
 	W_UP = 13,
@@ -61,7 +90,8 @@ enum keycodes
 };
 
 /* ----- STRUCT ----- */
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -71,13 +101,13 @@ typedef struct	s_data {
 
 typedef struct s_map
 {
-	char 	**map;
-	char 	**map_cpy;
+	char	**map;
+	char	**map_cpy;
 	int		map_row_count;
-	int 	map_column_count;
+	int		map_column_count;
 	int		flag_p;
-    int		flag_e;
-    int		flag_c;
+	int		flag_e;
+	int		flag_c;
 	int		player_col;
 	int		player_row;
 	int		player_steps;
@@ -99,29 +129,28 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	//char	*relative_path;
-	//int		width;
-	//int		height;
 	int		key_pressed;
 	t_map	map;
 }	t_game;
 
 /* ----- FUNCTIONS ----- */
 
-int read_map(char **argv, t_map *, t_game *game);
-void parse_map (t_map *map, t_game *game);
-void print_graphics_in_win(t_game game);
-int key_hook_control(int keycode, t_game *game);
-int	close_red_cross_window(t_game *game);
-int print_error_do_exit(char *error_message, t_game *game, int free_needed);
-void free_map(char **map);
-void init_ds_map(t_map *map);
-void print_ds_map(t_map *map);
-
+int		read_map(char **argv, t_map *map, t_game *game);
+void	parse_map(t_map *map, t_game *game);
+void	print_graphics_in_win(t_game game);
+int		key_hook_control(int keycode, t_game *game);
+int		close_red_cross_window(t_game *game);
+int		print_error_do_exit(char *error_message, t_game *game, int free_needed);
+void	free_map(char **map);
+void	init_ds_map(t_map *map);
+void	print_ds_map(t_map *map);
+int		check_values(t_map *map);
+int		min_pec_char(t_map *map);
+void	print_xpm_on_map(t_game *game);
 
 /* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
-void print_map (t_game *game);
-void print_map_cpy(t_game *game);
-void print_string(char *s);
+void	print_map(t_game *game);
+void	print_map_cpy(t_game *game);
+void	print_string(char *s);
 
 #endif

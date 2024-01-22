@@ -20,11 +20,12 @@ SRC_DIR = src
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRC_CFILES))
 SRC_CFILES =	main.c \
 				read_map.c \
-				parse_map.c \
-				utils.c \
+				parse_map_1.c \
+				parse_map_2.c \
 				graphic_functions.c \
 				key_controls.c \
 				error_management.c \
+				erase_utils_for_testing.c \
 
 SRC_GNL_DIR = $(SRC_DIR)/gnl
 SRC_GNL_FILES = $(addprefix $(SRC_GNL_DIR)/, $(SRC_GNL_CFILES))
@@ -47,9 +48,12 @@ INCL_DIR = includes
 
 # Compiler options ------------------------------------------- #
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror  -g -fsanitize=address
-LINKFLAGS = -L./$(LIBFT_DIR) -lft -L./$(PRINTF_DIR) -lftprintf -L./$(MLX_DIR) -lmlx 
+CFLAGS = -Wall -Wextra -Werror  $(SANITIZE)
+LINKFLAGS = -L./$(LIBFT_DIR) -lft -L./$(PRINTF_DIR) -lftprintf -L./$(MLX_DIR) -lmlx
 FRAMEWORKS = -framework OpenGL -framework AppKit
+
+SANITIZE=
+# SANITIZE=-g -fsanitize=address
 
 ########################## RULES ###############################
 
@@ -57,7 +61,7 @@ all: $(NAME)
 
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR)  
+	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE) -C $(PRINTF_DIR)
 	@$(MAKE) -C $(MLX_DIR)
 	@$(CC) $(CFLAGS) $(LINKFLAGS) $(FRAMEWORKS) -o $(NAME) $(OBJS)

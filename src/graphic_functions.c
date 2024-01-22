@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:05:10 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/19 12:14:46 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:51:20 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,13 @@ void	select_square_grid_image(t_game *game, int row, int col)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->map.player_front_img, col * RESOLUTION_W, row * RESOLUTION_H);
 	else if (game->map.map[row][col] == 'E')
+	{
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->map.exit_on_img, col * RESOLUTION_W, row * RESOLUTION_H);
+			game->map.exit_off_img, col * RESOLUTION_W, row * RESOLUTION_H);
+		if (game->map.collectable_count == 0)
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->map.exit_on_img, col * RESOLUTION_W, row * RESOLUTION_H);
+	}
 	else if (game->map.map[row][col] == 'C')
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->map.collectable_img, col * RESOLUTION_W, row * RESOLUTION_H);
