@@ -25,7 +25,9 @@ SRC_CFILES =	main.c \
 				graphic_functions.c \
 				key_controls.c \
 				error_management.c \
-				erase_utils_for_testing.c \
+				utils_for_testing_1.c \
+				utils_for_testing_2.c 
+
 
 SRC_GNL_DIR = $(SRC_DIR)/gnl
 SRC_GNL_FILES = $(addprefix $(SRC_GNL_DIR)/, $(SRC_GNL_CFILES))
