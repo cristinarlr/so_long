@@ -51,7 +51,7 @@
 \t>> At least one collectable (C).\n"
 # define ERRORMSG_9 ": Invalid path.\n\
 \t>> Impossible to collect everything or access to exit.\n"
-# define SUCCESSMSG "​🥦​🍆​🥕​🌽​🥬​🌶️​EVERYTHING COLLECTED!🥦​🍆​🥕​🌽​🥬​🌶️\n"
+# define SUCCESSMSG "​🥦​🍆​🥕​🌽​🥬​🌶️ EVERYTHING COLLECTED! 🥦​🍆​🥕​🌽​🥬​🌶️\n"
 
 /* ----- CONSTANTS ----- */
 enum e_exit_code{
