@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:16:33 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/22 12:21:47 by crramire         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:41:19 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	close_red_cross_window(t_game *game)
 	exit(NO_ERROR);
 }
 
-static void add_mvmnt(int new_row, int new_col, t_game *game)
+static void	add_mvmnt(int new_row, int new_col, t_game *game)
 {
 	game->map.player_row = new_row;
 	game->map.player_col = new_col;
@@ -78,7 +78,6 @@ static int	do_move(int keycode, t_game *game)
 			scroll_col + current_col, game) == ERROR)
 		return (ERROR);
 	game->map.map[current_row][current_col] = '0';
-	ft_printf("steps: %i\n", game->map.player_steps);
 	return (NO_ERROR);
 }
 
@@ -93,7 +92,10 @@ int	key_hook_control(int keycode, t_game *game)
 		|| keycode == RIGHT || keycode == D_RIGHT
 		|| keycode == UP || keycode == W_UP
 		|| keycode == DOWN || keycode == S_DOWN)
+	{
 		feasible_move = do_move(keycode, game);
+		ft_printf("steps: %i\n", game->map.player_steps);
+	}
 	if (feasible_move == 0)
 		print_graphics_in_win(*game);
 	return (0);
