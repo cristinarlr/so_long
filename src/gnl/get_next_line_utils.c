@@ -6,14 +6,13 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 08:58:08 by Cristina          #+#    #+#             */
-/*   Updated: 2023/12/13 15:15:57 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:49:01 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/get_next_line.h"
-#include "../../inc/so_long.h"
 
-size_t	ft_strlen(const char *s)
+size_t	strlen_gnl(const char *s)
 {
 	int	i;
 
@@ -23,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr_gnl(char *s, int c)
+char	*strchr_gnl(char *s, int c)
 {
 	char	ccomp;
 
@@ -37,7 +36,7 @@ char	*ft_strchr_gnl(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin_gnl(char *s1, char *s2)
+char	*strjoin_gnl(char *s1, char *s2)
 {
 	char	*ccatstr;
 	size_t	ccatlen;
@@ -46,7 +45,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 
 	if (s1 == 0 || s2 == 0)
 		return (NULL);
-	ccatlen = (ft_strlen(s1) + ft_strlen(s2));
+	ccatlen = (strlen_gnl(s1) + strlen_gnl(s2));
 	ccatstr = malloc(ccatlen + 1);
 	if (!ccatstr)
 		return (NULL);
@@ -64,13 +63,13 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	return (ccatstr);
 }
 
-char	*ft_strdup(const char *s1)
+char	*strdup_gnl(const char *s1)
 {
 	char	*ptr;
 	int		i;
 	int		len;
 
-	len = ft_strlen(s1) + 1;
+	len = strlen_gnl(s1) + 1;
 	ptr = (char *)malloc(sizeof(char) * len);
 	if (ptr == NULL)
 		return (ptr);
@@ -84,17 +83,17 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*substr_gnl(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;
 	size_t	i;
 
 	if (!s)
 		return (0);
-	if (ft_strlen(s) <= start)
-		return (ft_strdup(""));
-	if (ft_strlen(&s[start]) < len)
-		len = ft_strlen(&s[start]);
+	if (strlen_gnl(s) <= start)
+		return (strdup_gnl(""));
+	if (strlen_gnl(&s[start]) < len)
+		len = strlen_gnl(&s[start]);
 	ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (ptr == NULL)
 		return (ptr);

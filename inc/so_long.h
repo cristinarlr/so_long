@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 13:27:54 by crramire          #+#    #+#             */
+/*   Updated: 2024/02/29 10:50:33 by crramire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
 /* ---- NEW ---- */
-/*# include <mlx.h>*/
+/* # include <mlx.h> */
 # include <fcntl.h>
 
 /* --- LIBRARIES --- */
@@ -18,7 +30,6 @@
 # include "../src/libft/libft.h"
 # include "../src/ft_printf/ft_printf.h"
 # include "../mlx/mlx.h"
-/*# include "../src/Gnl/include/get_next_line.h"*/
 
 /* ----- RESOLUTIONS ----- */
 # define RESOLUTION_H	32
@@ -36,8 +47,8 @@
 # define XPM_9 "./xpm/exit_off.xpm"
 
 /* ----- MESSAGES ----- */
-# define ERRORMSG_1	": Invalid map format, only .ber are allowed"
-# define ERRORMSG_2 ": Expecting a valid input, verify exe arguments"
+# define ERRORMSG_1	"Error: Invalid map format, only .ber are allowed"
+# define ERRORMSG_2 "Error: Expecting a valid input, verify exe arguments"
 # define ERRORMSG_3 ": Problem reading file"
 # define ERRORMSG_4 ": Memory allocation problem"
 # define ERRORMSG_5 ": Map is not squared"
@@ -51,10 +62,12 @@
 \t>> At least one collectable (C).\n"
 # define ERRORMSG_9 ": Invalid path.\n\
 \t>> Impossible to collect everything or access to exit.\n"
-# define SUCCESSMSG "​🥦​🍆​🥕​🌽​🥬​🌶️ EVERYTHING COLLECTED! 🥦​🍆​🥕​🌽​🥬​🌶️\n"
+# define ERRORMSG_10 ": Image file not found"
+# define SUCCESSMSG "​🥦​🍆​🥕​🌽​🥬​🌶️​ EVERYTHING COLLECTED! 🥦​🍆​🥕​🌽​🥬​🌶️\n"
 
 /* ----- CONSTANTS ----- */
-enum e_exit_code{
+enum e_exit_code
+{
 	ERROR = -1,
 	NO_ERROR = 0
 };
@@ -90,14 +103,6 @@ enum e_keycodes
 };
 
 /* ----- STRUCT ----- */
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 typedef struct s_map
 {
@@ -123,7 +128,7 @@ typedef struct s_map
 	void	*collectable_img;
 	void	*exit_on_img;
 	void	*exit_off_img;
-}t_map;
+}	t_map;
 
 typedef struct s_game
 {
@@ -140,17 +145,11 @@ void	parse_map(t_map *map, t_game *game);
 void	print_graphics_in_win(t_game game);
 int		key_hook_control(int keycode, t_game *game);
 int		close_red_cross_window(t_game *game);
-int		print_error_do_exit(char *error_message, t_game *game, int free_needed);
+int		print_error_do_exit(char *error_message, t_game *game);
 void	free_map(char **map);
-void	init_ds_map(t_map *map);
-void	print_ds_map(t_map *map);
+void	init_data_map(t_map *map);
 int		check_values(t_map *map);
 int		min_pec_char(t_map *map);
 void	print_xpm_on_map(t_game *game);
-
-/* ----- FUNCTIONS UTILS WHILE PROGRAMING----- */
-void	print_map(t_game *game);
-void	print_map_cpy(t_game *game);
-void	print_string(char *s);
 
 #endif

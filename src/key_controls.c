@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:16:33 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/25 11:41:19 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:20:38 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	valid_mvmnt(int new_row, int new_col, t_game *game)
 			return (1);
 		game->map.player_steps++;
 		ft_printf("%s", SUCCESSMSG);
-		exit(0);
+		print_error_do_exit(NULL, game);
 	}
 	if (game->map.map[new_row][new_col] == '1')
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:58:38 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/22 12:55:04 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:50:45 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	free_map(char **map)
 {
 	int	i;
 
-	ft_printf("🔥​free🔥​\n");
 	i = 0;
 	while (map[i])
 	{
@@ -27,20 +26,13 @@ void	free_map(char **map)
 	free(map);
 }
 
-int	print_error_do_exit(char *error_message, t_game *game, int free_needed)
+int	print_error_do_exit(char *error_message, t_game *game)
 {
-	ft_printf("🚫​ Error%s\n", error_message);
-	ft_printf("​🔥🔥🔥🔥🔥🔥​​\n");
-	if (free_needed == 1)
-	{
-		ft_printf("🔥free_map = case 1🔥\n");
-		free_map(game->map.map);
-	}
-	if (free_needed == 2)
-	{
-		ft_printf("🔥free_map = case 2🔥\n");
+	if (error_message != NULL)
+		ft_printf("Error%s", error_message);
+	if (game->map.map_cpy)
 		free_map(game->map.map_cpy);
+	if (game->map.map)
 		free_map(game->map.map);
-	}
 	exit(0);
 }

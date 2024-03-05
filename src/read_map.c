@@ -6,44 +6,49 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:36:21 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/22 12:54:13 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:21:27 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/get_next_line.h"
 #include "../inc/so_long.h"
 
-static int	map_rows(char **argv, int fd)
+static int	map_rows(int fd)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
-	fd = open(argv[1], O_RDONLY);
-	while (1)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		line = get_next_line(fd);
-		if (line == 0)
-			break ;
 		i++;
+		free(line);
+		line = get_next_line(fd);
 	}
+	free(line);
+	close(fd);
 	return (i);
 }
 
 static void	load_map(t_map *map, int fd)
 {
-	int	i;
-	int	raw;
+	int		i;
+	int		raw;
+	char	*line;
 
 	i = 0;
 	raw = map->map_row_count;
 	while (raw > 0)
 	{
-		map->map[i] = ft_strtrim(get_next_line(fd), "\n");
+		line = get_next_line(fd);
+		map->map[i] = ft_strtrim(line, "\n");
+		free(line);
 		i++;
 		raw--;
 	}
 	map->map[i] = NULL;
+	raw = map->map_row_count;
 }
 
 static void	is_it_squared(t_map *map, t_game *game)
@@ -59,7 +64,7 @@ static void	is_it_squared(t_map *map, t_game *game)
 	{
 		cmp_len = ft_strlen(map->map[i]);
 		if (len != cmp_len)
-			print_error_do_exit(ERRORMSG_5, game, 1);
+			print_error_do_exit(ERRORMSG_5, game);
 		i++;
 	}
 	map->map_column_count = len;
@@ -70,9 +75,9 @@ static void	copy_map(t_map *map, t_game *game)
 	int	i;
 
 	i = 0;
-	map->map_cpy = malloc(sizeof(char **) * (map->map_row_count + 1));
+	map->map_cpy = (char **)malloc(sizeof(char *) * (map->map_row_count + 1));
 	if (!map->map_cpy)
-		print_error_do_exit(ERRORMSG_6, game, 2);
+		print_error_do_exit(ERRORMSG_6, game);
 	while (i < (map->map_row_count))
 	{
 		map->map_cpy[i] = ft_strdup(map->map[i]);
@@ -86,20 +91,23 @@ int	read_map(char **argv, t_map *map, t_game *game)
 	int	fd;
 	int	raws;
 
-	init_ds_map(map);
+	init_data_map(map);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (print_error_do_exit(ERRORMSG_3, game, 0));
-	raws = map_rows(argv, fd);
-	map->map = malloc(sizeof(char **) * (raws + 1));
+		return (print_error_do_exit(ERRORMSG_3, game));
+	raws = map_rows(fd);
+	map->map = (char **)malloc(sizeof(char *) * (raws + 1));
 	if (!map->map)
-		return (print_error_do_exit(ERRORMSG_4, game, 1));
+		return (print_error_do_exit(ERRORMSG_4, game));
 	map->map_row_count = raws;
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (print_error_do_exit(ERRORMSG_3, game));
 	load_map(map, fd);
 	close(fd);
 	is_it_squared(map, game);
 	if (map->map_column_count > 75 || map->map_row_count > 40)
-		return (print_error_do_exit(ERRORMSG_5_1, game, 1));
+		return (print_error_do_exit(ERRORMSG_5_1, game));
 	copy_map(map, game);
 	parse_map(map, game);
 	return (0);

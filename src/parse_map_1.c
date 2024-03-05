@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_map_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:03:36 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/19 11:49:44 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:05:59 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	parse_map(t_map *map, t_game *game)
 
 	i = 0;
 	if (check_values(map) == ERROR)
-		print_error_do_exit(ERRORMSG_7, game, 2);
+		print_error_do_exit(ERRORMSG_7, game);
 	if (min_pec_char(map) == ERROR)
-		print_error_do_exit(ERRORMSG_8, game, 2);
+		print_error_do_exit(ERRORMSG_8, game);
 	if (check_valid_path(map) == ERROR)
-		print_error_do_exit(ERRORMSG_9, game, 2);
+		print_error_do_exit(ERRORMSG_9, game);
 	i++;
 }

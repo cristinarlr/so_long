@@ -6,12 +6,11 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 23:25:20 by Cristina          #+#    #+#             */
-/*   Updated: 2023/12/13 15:16:06 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:52:16 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/get_next_line.h"
-#include "../../inc/so_long.h"
 
 static char	*ft_extract_line(char *stash)
 {
@@ -21,16 +20,16 @@ static char	*ft_extract_line(char *stash)
 
 	if (stash[0] == '\0')
 		return (NULL);
-	if (ft_strchr(stash, '\n'))
+	if (strchr_gnl(stash, '\n'))
 	{
-		pnewline = ft_strchr(stash, '\n') + 1;
-		line_len = ft_strlen(stash) - ft_strlen(pnewline);
-		line = ft_substr(stash, 0, line_len);
+		pnewline = strchr_gnl(stash, '\n') + 1;
+		line_len = strlen_gnl(stash) - strlen_gnl(pnewline);
+		line = substr_gnl(stash, 0, line_len);
 		if (!line)
 			return (NULL);
 	}
 	else
-		line = ft_strdup(stash);
+		line = strdup_gnl(stash);
 	return (line);
 }
 
@@ -45,11 +44,11 @@ static char	*ft_clean_stash(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	if (ft_strchr(stash, '\n'))
+	if (strchr_gnl(stash, '\n'))
 	{
-		pnewline = ft_strchr(stash, '\n') + 1;
-		rest_stash_start = ft_strlen(stash) - ft_strlen(pnewline);
-		rest_stash = ft_substr(stash, rest_stash_start, ft_strlen(pnewline));
+		pnewline = strchr_gnl(stash, '\n') + 1;
+		rest_stash_start = strlen_gnl(stash) - strlen_gnl(pnewline);
+		rest_stash = substr_gnl(stash, rest_stash_start, strlen_gnl(pnewline));
 		if (rest_stash == NULL)
 		{
 			free(stash);
@@ -69,7 +68,7 @@ static char	*ft_read_and_stock(int fd, char *stash)
 
 	*buff = '\0';
 	nbytes = 1;
-	while (!ft_strchr(stash, '\n') && nbytes != 0)
+	while (!strchr_gnl(stash, '\n') && nbytes != 0)
 	{
 		nbytes = read(fd, buff, BUFFER_SIZE);
 		if (nbytes == -1)
@@ -78,7 +77,7 @@ static char	*ft_read_and_stock(int fd, char *stash)
 			return (0);
 		}
 		buff[nbytes] = '\0';
-		stash = ft_strjoin(stash, buff);
+		stash = strjoin_gnl(stash, buff);
 		if (!stash)
 			return (NULL);
 	}
@@ -106,25 +105,3 @@ char	*get_next_line(int fd)
 	stash = ft_clean_stash(stash);
 	return (line);
 }
-
-/* int main()
-{
-	int	fd;
-	char	*line;
-	
-	//fd = open("41_with_nl", O_RDONLY);
-	//fd = open("big_line_with_nl", O_RDONLY);
-	fd = open("big_line_no_nl", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error al abrir el archivo\n");
-		return (1);
-	}
-	while ((line = get_next_line(fd)) != 0)
-	{
-		//printf("\nMAIN_LINE = %s", line);
-		printf("%s", line);
-	}
-	close(fd);
-	return (0);
-} */

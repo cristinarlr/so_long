@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 23:03:16 by Cristina          #+#    #+#             */
-/*   Updated: 2023/12/13 15:15:08 by crramire         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:53:50 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strchr_gnl(char *s, int c);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s1);
+size_t	strlen_gnl(const char *s);
+char	*strchr_gnl(char *s, int c);
+char	*strjoin_gnl(char *s1, char *s2);
+char	*substr_gnl(char const *s, unsigned int start, size_t len);
+char	*strdup_gnl(const char *s1);
 char	*get_next_line(int fd);
 
 #endif
