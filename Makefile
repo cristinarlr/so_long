@@ -25,7 +25,7 @@ SRC_CFILES =	main.c \
 				graphic_functions.c \
 				key_controls.c \
 				error_management.c \
-				init_data_structure.c
+				init_data_structure.c \
 				utils_for_testing_1.c \
 				utils_for_testing_2.c 
 
