@@ -1,5 +1,7 @@
 # so_long
 This project is a very small 2D game. It is built to make you work with textures, sprites. And some very basic gameplay elements.
+<img src="so_long_img.png" alt="so_long_img.png" width="400"/>
+
 
 ## Installation
 ### Cloning the repositories
