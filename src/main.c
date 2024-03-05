@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:06:01 by Cristina          #+#    #+#             */
-/*   Updated: 2024/02/29 10:54:49 by crramire         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:03:15 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ static int	check_valid_map_format(char *argv)
 	}
 }
 
+void	check_leaks(void)
+{
+	system("leaks -q so_long");
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	atexit(check_leaks);
 	ft_bzero(&game, 0);
 	if (argc == 2)
 	{
