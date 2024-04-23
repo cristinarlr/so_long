@@ -6,7 +6,7 @@
 /*   By: crramire <crramire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:03:36 by crramire          #+#    #+#             */
-/*   Updated: 2024/01/22 10:47:12 by crramire         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:16:00 by crramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static int	check_char(t_map *map, int i, int j)
 	abc = "01PEC";
 	len = strlen(map->map[i]);
 	if (i == 0 || j == map->map_column_count)
+	{
+		if (map->map[i][j] != '1')
+			return (ERROR);
+	}
+	if (i == map->map_row_count || j == map->map_column_count)
 	{
 		if (map->map[i][j] != '1')
 			return (ERROR);
